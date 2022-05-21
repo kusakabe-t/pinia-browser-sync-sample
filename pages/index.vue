@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useCountStore } from '../store/count'
+import { useTestStore } from '../store/test'
 const countStore = useCountStore()
+const testStore = useTestStore()
 
 const openSubCount1Window = () => {
   window.open(
@@ -15,6 +17,13 @@ const openSubCount2Window = () => {
     '',
     'width=350,height=250,scrollbars=yes,resizable=yes,status=yes'
   )
+}
+
+const plus = () => {
+  countStore.countPlus()
+}
+const reset = () => {
+  countStore.$reset()
 }
 </script>
 
@@ -33,6 +42,12 @@ const openSubCount2Window = () => {
       >
         open count 2
       </div>
+    </div>
+    <div class="rounded border border-black p-[16px]" @click="plus">
+      カウントアップ
+    </div>
+    <div class="mt-[16px] rounded border border-[red] p-[16px]" @click="reset">
+      リセット
     </div>
     <div>カウント: {{ countStore.count }}</div>
   </div>

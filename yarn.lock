@@ -694,11 +694,6 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
-"@sindresorhus/safe-stringify@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@sindresorhus/safe-stringify/-/safe-stringify-0.1.1.tgz#3454186f93fe74aabfb7c71a552d74cd7d689b03"
-  integrity sha512-+tGKnryBl2bdT67Zy7ntWhxo5gto0Z30nbV7M+mGSoWsfDrjAbd3ti11iAZJC+kvGaY2IAE9XIrXc81lkwtTIw==
-
 "@trysound/sax@0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.2.0.tgz#cccaab758af56761eb7bf37af6f03f326dd798ad"
@@ -4664,18 +4659,7 @@ pify@^2.3.0:
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
   integrity sha1-7RQaasBDqEnqWISY59yosVMw6Qw=
 
-pinia-shared-state@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/pinia-shared-state/-/pinia-shared-state-0.2.3.tgz#78cbcd6c63166c77b1f4cc11c8c56b8eee25be25"
-  integrity sha512-SGUYZ4PlI4KEG+Bb1LEfgMPigh4NEYWVmQbdvDGH1NTUQDRPuY0YJfgZiyQkJbp8eDmwns/vRD6pLdXvZuMN1Q==
-  dependencies:
-    "@sindresorhus/safe-stringify" "^0.1.1"
-    broadcast-channel "^4.2.0"
-    pinia "^2.0.11"
-    vue "^3.2.31"
-    vue-demi latest
-
-pinia@^2.0.11, pinia@^2.0.14:
+pinia@^2.0.14:
   version "2.0.14"
   resolved "https://registry.yarnpkg.com/pinia/-/pinia-2.0.14.tgz#0837898c20291ebac982bbfca95c8d3c6099925f"
   integrity sha512-0nPuZR4TetT/WcLN+feMSjWJku3SQU7dBbXC6uw+R6FLQJCsg+/0pzXyD82T1FmAYe0lsx+jnEDQ1BLgkRKlxA==
@@ -6259,7 +6243,7 @@ vue-bundle-renderer@^0.3.8:
   dependencies:
     bundle-runner "^0.0.1"
 
-vue-demi@*, vue-demi@latest:
+vue-demi@*:
   version "0.12.5"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.12.5.tgz#8eeed566a7d86eb090209a11723f887d28aeb2d1"
   integrity sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==
@@ -6284,7 +6268,7 @@ vue-router@^4.0.15:
   dependencies:
     "@vue/devtools-api" "^6.0.0"
 
-vue@^3.2.31, vue@^3.2.33:
+vue@^3.2.33:
   version "3.2.35"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.35.tgz#e0a63a8b2fcc0334a936d484d646e31b571e3f80"
   integrity sha512-mc/15B0Wjd/4JMMGOcXUQAeXfjyg8MImA2EVZucNdyDPJe1nXhMNbYXOEVPEGfk/mCeyszCzl44dSAhHhQVH8g==

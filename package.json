@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.1.9",
-    "pinia": "^2.0.14",
-    "pinia-shared-state": "^0.2.3"
+    "broadcast-channel": "^4.2.0",
+    "pinia": "^2.0.14"
   }
 }

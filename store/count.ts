@@ -9,8 +9,5 @@ export const useCountStore = defineStore('countStore', {
       this.count++
     },
   },
-  share: {
-    enable: true,
-    initialize: true,
-  },
+  sharedGlobalStates: ['count']
 })
