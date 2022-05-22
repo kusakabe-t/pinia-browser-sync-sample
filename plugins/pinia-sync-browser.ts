@@ -2,9 +2,6 @@ import { watch } from 'vue'
 import type { PiniaPluginContext, Store } from 'pinia'
 import { BroadcastChannel } from 'broadcast-channel'
 
-// piniaのストアをブラウザ間で共有
-// こちらはvueファイル内でストアが宣言されたものに対して有効
-// ページ遷移時に追加される
 const PiniaSharedState = () => {
   return ({ store, options }: PiniaPluginContext) => {
     const sharedGlobalStates = options?.sharedGlobalStates ?? []
@@ -17,7 +14,10 @@ const PiniaSharedState = () => {
   }
 }
 
-function share<T extends Store, K extends keyof T['$state']>(state: K, store: T) {
+function share<T extends Store, K extends keyof T['$state']>(
+  state: K,
+  store: T
+) {
   // storeのステートごとにBroadcastChannelを設定
   const globalStoreName = `${store.$id}-${state.toString()}`
   const globalStoreChannel = new BroadcastChannel(globalStoreName)
@@ -30,7 +30,9 @@ function share<T extends Store, K extends keyof T['$state']>(state: K, store: T)
 
   globalStoreChannel.onmessage = (message) => {
     // 親窓が新しくウィンドウを開くときは、evtがundefinedになり、新しく開いたウィンドウにステートを渡す
-    if (!message) return globalStoreChannel.postMessage({ timestamp, state: store[state] })
+    if (!message) {
+      return globalStoreChannel.postMessage({ timestamp, state: store[state] })
+    }
 
     // 親窓や小窓から渡されるストアの値を保存
     timestamp = message.timestamp
