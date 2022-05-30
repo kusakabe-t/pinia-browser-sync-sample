@@ -5,7 +5,7 @@ import { BroadcastChannel } from 'broadcast-channel'
 const PiniaSharedState = () => {
   return ({ store, options }: PiniaPluginContext) => {
     const sharedGlobalStates = options?.sharedGlobalStates ?? []
-    // store.$stateをストアを取得する。ここで取得できるストアはフロント側でインポートしているストアの1つ。ストアは1つずつ読み込まれる。
+    // store.$stateでstore内のstateを取得する
     Object.keys(store.$state).forEach((state) => {
       if (!sharedGlobalStates.includes(state)) return
 
@@ -18,28 +18,24 @@ function share<T extends Store, K extends keyof T['$state']>(
   state: K,
   store: T
 ) {
-  // storeのステートごとにBroadcastChannelを設定
+  // ブラウザ間で共有するstateに対しBroadcastChannelを設定
   const globalStoreName = `${store.$id}-${state.toString()}`
   const globalStoreChannel = new BroadcastChannel(globalStoreName)
-
-  // 異なるウィンドウ間でストアを更新するために、ウィンドウ作成時にメッセージを送り、今のストアの値を共有する
-  // (postMessageが実行されると、onmessageでメッセージを受け取り、ストアが親窓から渡される)
-  globalStoreChannel.postMessage(undefined)
 
   let timestamp = 0
 
   globalStoreChannel.onmessage = (message) => {
-    // 親窓が新しくウィンドウを開くときは、evtがundefinedになり、新しく開いたウィンドウにステートを渡す
+    // 新しく開いたウィンドウに対し、現在のstateを渡す
     if (!message) {
       return globalStoreChannel.postMessage({ timestamp, state: store[state] })
     }
 
-    // 親窓や小窓から渡されるストアの値を保存
+    // stateを更新
     timestamp = message.timestamp
     store[state] = message.state
   }
 
-  // ストアを更新すると発火される
+  // stateが更新されるたびに発火
   watch(
     () => store[state],
     (state) => {
@@ -48,6 +44,9 @@ function share<T extends Store, K extends keyof T['$state']>(
     },
     { deep: true }
   )
+
+	// ウィンドウ作成時に発火。現在のウィンドウ間で共有しているstateを取得する
+	globalStoreChannel.postMessage(undefined)
 }
 
 declare module 'pinia' {
